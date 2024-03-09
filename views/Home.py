@@ -2,12 +2,16 @@ import streamlit as st
 from utils import logo
 from streamlit_option_menu import option_menu
 
+import streamlit as st
+from langchain.llms import OpenAI
+
 def main():
     #logo()
     st.write("#") #forces the page to load from top 
     st.image("omdena_logo.png", width=300, use_column_width=True)
     st.title(" :blue[Portal de detección de noticias falsas]")
-
+    
+    openai_api_key = st.text_input('OpenAI API Key', type='password')
     #added to center the image on the sidebar to make it look better
     st.markdown(
     """
