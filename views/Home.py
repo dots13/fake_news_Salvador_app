@@ -5,6 +5,11 @@ from streamlit_option_menu import option_menu
 import streamlit as st
 from langchain.llms import OpenAI
 
+import torch
+from torch import Tensor
+from torch import nn
+from transformers import BertModel
+
 def main():
     #logo()
     st.write("#") #forces the page to load from top 
@@ -12,6 +17,8 @@ def main():
     st.title(" :blue[Portal de detección de noticias falsas]")
     
     openai_api_key = st.text_input('OpenAI API Key', type='password')
+    max_len, bert = 178 , 'dccuchile/bert-base-spanish-wwm-uncased'
+    
     #added to center the image on the sidebar to make it look better
     st.markdown(
     """
