@@ -194,6 +194,7 @@ class MDFEND(AbstractModel):
 # https://drive.google.com/file/d/1-4NIx36LmRF2R5T8Eu5Zku_-CGvV07VE/view?usp=sharing
 
 # https://drive.google.com/file/d/1-4NIx36LmRF2R5T8Eu5Zku_-CGvV07VE/view?usp=drive_link
+domain_num = 12
 def load_model():
     f_checkpoint = Path(f"models//bert.pth")
     with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
