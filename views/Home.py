@@ -21,6 +21,7 @@ def load_model():
     f_checkpoint = Path(f"models//bert.pth")
     with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
         gdown.download_folder(id='1-4NIx36LmRF2R5T8Eu5Zku_-CGvV07VE', quiet=True, use_cookies=False)
+MDFEND_MODEL = MDFEND(bert, domain_num , expert_num=15 , mlp_dims = [2024 ,1012 ,606])
 MDFEND_MODEL.load_state_dict(torch.load(f="models//bert.pth" , map_location=torch.device('cpu')))
 
 def main():
