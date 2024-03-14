@@ -20,6 +20,8 @@ from torch import Tensor
 from torch import nn
 from transformers import BertModel
 
+from pathlib import Path
+
 ####
 class _MLP(nn.Module):
     def __init__(self,
@@ -194,14 +196,26 @@ class MDFEND(AbstractModel):
 # https://drive.google.com/file/d/1-4NIx36LmRF2R5T8Eu5Zku_-CGvV07VE/view?usp=sharing
 
 # https://drive.google.com/file/d/1-4NIx36LmRF2R5T8Eu5Zku_-CGvV07VE/view?usp=drive_link
-domain_num = 12
+
 def load_model():
-    f_checkpoint = Path(f"models//bert.pth")
+    f_checkpoint = Path(f"models/bert.pth")
     with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
         gdown.download_folder(id='1-4NIx36LmRF2R5T8Eu5Zku_-CGvV07VE', quiet=True, use_cookies=False)
-max_len, bert = 178 , 'dccuchile/bert-base-spanish-wwm-uncased'
-MDFEND_MODEL = MDFEND(bert, domain_num , expert_num=15 , mlp_dims = [2024 ,1012 ,606])
-MDFEND_MODEL.load_state_dict(torch.load(f="models//bert.pth" , map_location=torch.device('cpu')))
+        
+save_dest = Path('models')
+save_dest.mkdir(exist_ok=True)
+f_checkpoint = Path(f"models/bert.pth")
+if not f_checkpoint.exists():
+    load_model()
+else:
+    path_to_model = Path(f"models/bert.pth")
+    domain_num = 12
+    max_len, bert = 178 , 'dccuchile/bert-base-spanish-wwm-uncased'
+    MDFEND_MODEL = MDFEND(bert, domain_num , expert_num=15 , mlp_dims = [2024 ,1012 ,606])
+    MDFEND_MODEL.load_state_dict(torch.load(f=path_to_model , map_location=torch.device('cpu')))
+
+
+
 
 def main():
     #logo()
