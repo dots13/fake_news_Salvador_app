@@ -10,6 +10,19 @@ from torch import Tensor
 from torch import nn
 from transformers import BertModel
 
+import gdown
+
+#MODEL_SAVE_PATH = "/content/drive/MyDrive/models-path/last-epoch-model-2024-02-27-15_22_42_6.pth"
+
+# https://drive.google.com/file/d/1-4NIx36LmRF2R5T8Eu5Zku_-CGvV07VE/view?usp=sharing
+
+# https://drive.google.com/file/d/1-4NIx36LmRF2R5T8Eu5Zku_-CGvV07VE/view?usp=drive_link
+def load_model():
+    f_checkpoint = Path(f"models//bert.pth")
+    with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
+        gdown.download_folder(id='1-4NIx36LmRF2R5T8Eu5Zku_-CGvV07VE', quiet=True, use_cookies=False)
+MDFEND_MODEL.load_state_dict(torch.load(f="models//bert.pth" , map_location=torch.device('cpu')))
+
 def main():
     #logo()
     st.write("#") #forces the page to load from top 
