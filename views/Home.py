@@ -13,6 +13,13 @@ from transformers import BertModel
 import gdown
 from typing import List, Optional, Tuple
 
+from faknow.model.layers.layer import TextCNNLayer
+from faknow.model.model import AbstractModel
+import torch
+from torch import Tensor
+from torch import nn
+from transformers import BertModel
+
 ####
 class _MLP(nn.Module):
     def __init__(self,
