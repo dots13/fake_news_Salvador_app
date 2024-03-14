@@ -11,6 +11,7 @@ from torch import nn
 from transformers import BertModel
 
 import gdown
+from typing import List, Optional, Tuple
 
 ####
 class _MLP(nn.Module):
